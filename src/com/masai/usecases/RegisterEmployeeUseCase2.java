@@ -2,10 +2,11 @@ package com.masai.usecases;
 
 import java.util.Scanner;
 
+import com.masai.bean.Employee;
 import com.masai.dao.EmployeeDao;
 import com.masai.dao.EmployeeDaoImpl;
 
-public class RegisterEmployeeUseCase1 {
+public class RegisterEmployeeUseCase2 {
 
 	public static void main(String[] args) {
 		
@@ -22,7 +23,14 @@ public class RegisterEmployeeUseCase1 {
 
 		EmployeeDao dao = new EmployeeDaoImpl();
 		
-		String reasult = dao.registerEmployee(name, username, password);
+		
+		Employee employee = new Employee();
+		employee.setName(name);
+		employee.setUsername(username);
+		employee.setPassword(password);
+		
+		
+		String reasult = dao.registerEmployee2(employee);	
 		
 		System.out.println(reasult);
 		
