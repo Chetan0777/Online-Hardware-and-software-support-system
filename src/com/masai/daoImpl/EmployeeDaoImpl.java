@@ -1,4 +1,4 @@
-package com.masai.dao;
+package com.masai.daoImpl;
 
 import java.sql.Connection;
 
@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.masai.bean.Employee;
+import com.masai.dao.EmployeeDao;
 import com.masai.utility.DBUtil;
 
 public class EmployeeDaoImpl implements EmployeeDao {

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.masai.bean.Employee;
 import com.masai.dao.EmployeeDao;
-import com.masai.dao.EmployeeDaoImpl;
+import com.masai.daoImpl.EmployeeDaoImpl;
 
 public class RegisterEmployeeUseCase2 {
 

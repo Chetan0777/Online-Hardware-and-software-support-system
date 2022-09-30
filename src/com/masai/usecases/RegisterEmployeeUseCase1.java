@@ -3,7 +3,7 @@ package com.masai.usecases;
 import java.util.Scanner;
 
 import com.masai.dao.EmployeeDao;
-import com.masai.dao.EmployeeDaoImpl;
+import com.masai.daoImpl.EmployeeDaoImpl;
 
 public class RegisterEmployeeUseCase1 {
 

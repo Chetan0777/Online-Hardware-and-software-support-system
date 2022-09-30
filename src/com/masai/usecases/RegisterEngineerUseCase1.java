@@ -3,8 +3,8 @@ package com.masai.usecases;
 import java.util.Scanner;
 
 import com.masai.bean.Engineer;
-import com.masai.dao.EngineerDao;
-import com.masai.dao.EngineerDaoImpl;
+import com.masai.dao.HODDao;
+import com.masai.daoImpl.HODDaoImpl;
 
 public class RegisterEngineerUseCase1 {
 
@@ -24,7 +24,7 @@ public class RegisterEngineerUseCase1 {
 		System.out.println("Enter Engineer Category (Hardware/Software) :- ");
 		String category  = s.next();
 
-		EngineerDao dao = new EngineerDaoImpl();
+		HODDao dao = new HODDaoImpl();
 		
 		
 		Engineer engineer = new Engineer();
@@ -41,3 +41,7 @@ public class RegisterEngineerUseCase1 {
 	}
 
 }
+
+
+
+
