@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.masai.bean.Complain;
 import com.masai.bean.Engineer;
 import com.masai.dao.HODDao;
+import com.masai.exceptions.ComplainException;
 import com.masai.exceptions.EngineerException;
 import com.masai.exceptions.HodException;
 import com.masai.utility.DBUtil;
@@ -102,6 +104,100 @@ public class HODDaoImpl implements HODDao{
 			throw new EngineerException("No Engineer Found !!!!");
 		}
 		return list;
+	}
+
+	@Override
+	public String DeleteEngineer(int engId) {
+
+		String delete = "Engineer Not Found !!!!";
+		
+		try (Connection conn = DBUtil.provideConnection()){
+			
+			PreparedStatement ps= conn.prepareStatement("delete from Register_Engineer where engId= ? ");
+			ps.setInt(1, engId);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				delete = "Engineer Deleted Sucessfully...!";
+			}
+			
+			
+		} catch (SQLException e) {
+			delete = e.getMessage();
+		}
+		
+		return delete;
+	}
+
+	@Override
+	public List<Complain> getAllComplain() throws ComplainException {
+		
+		List<Complain> com = new ArrayList<>();
+		
+		
+		try (Connection conn= DBUtil.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select * from Register_Complain");
+			
+			ResultSet rs= ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int id =rs.getInt("ComplainId");
+				String name = rs.getString("ComplainName");
+				String category = rs.getString("Category");
+				
+				Complain c = new Complain(id,name,category);
+				com.add(c);
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {			
+			throw new ComplainException(e.getMessage());
+	
+		}
+		if(com.size()==0) {
+			throw new ComplainException("No Complains Found!");
+		}
+	
+	
+	
+		return com;
+	}
+
+	@Override
+	public String assignedComplain(int engid, String name, String category, int id, String status) {
+		
+		String message = "Complain Not Assigned... ! ";
+		
+		try(Connection conn= DBUtil.provideConnection()) {
+			
+		PreparedStatement ps= conn.prepareStatement
+			("insert into EngineerComplainDTO(engid,name,category,EcomplainId,ComplainStatus) values(?,?,?,?,?)");
+		
+		ps.setInt(1, engid);
+		ps.setString(2, name);
+		ps.setString(3, category);
+		ps.setInt(4, id);
+		ps.setString(5, status);
+				
+			int x= ps.executeUpdate();
+			
+			
+			if(x > 0)
+				message = "Complain Assigned To Engineer " +name+ " Sucessfully... !";
+			
+			
+			
+		} catch (SQLException e) {
+			message = e.getMessage();
+		}
+		
+		return message;
+		
 	}
 
 
