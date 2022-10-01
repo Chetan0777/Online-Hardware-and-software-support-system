@@ -1,0 +1,64 @@
+
+
+create table loginhod
+(
+name varchar(20) Not Null,
+username varchar(30) Primary key,
+password varchar(20) Not Null
+);
+
+
+create table register_employee
+(
+empid int primary key auto_increment,
+Name varchar(20) not null,
+username varchar(30) not null unique,
+Password varchar(20) Not Null
+);
+
+create table register_Engineer
+(
+engid int primary key auto_increment,
+Name varchar(20) not null,
+username varchar(30) not null unique,
+password varchar(20) Not Null,
+Category varchar(30) not null
+);
+
+create table Complain
+(
+ComplainId int AUTO_INCREMENT primary key,
+ComplainName varchar(20) Not Null,
+Category varchar(20)Not NUll,
+foreign key (ComplainId) references Employee(empid)
+);
+
+
+
+
+
+create table EngineerComplain
+(
+engid int,
+Name varchar(20) not null,
+Category varchar(30) not null,
+EcomplainId int,
+ComplainStatus varchar(30),
+foreign key (engid) references Engineer(engid),
+foreign key (EcomplainId) references Complain(ComplainId)	
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
