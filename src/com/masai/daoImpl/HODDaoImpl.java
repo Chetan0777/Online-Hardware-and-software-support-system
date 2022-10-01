@@ -18,33 +18,29 @@ import com.masai.utility.DBUtil;
 public class HODDaoImpl implements HODDao{
 	
 	@Override
-	public boolean LoginHOD(String name ,String username, String password) throws HodException {
+	public String LoginHOD(String username, String password) throws HodException {
 		
+		String comment = "Invalid User";
 		
-		try(Connection conn = DBUtil.provideConnection()) {
+		try (Connection conn = DBUtil.provideConnection()){
 			
-		PreparedStatement ps = conn.prepareStatement("select * from LoginHOD where name = ? AND username = ? AND password = ?");
-		
-		ps.setString(1, name);
-		ps.setString(2, username);
-		ps.setString(3, password);
-		
+			PreparedStatement ps = conn.prepareStatement("select * from loginhod where username = ? AND password = ?");
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
 			ResultSet rs = ps.executeQuery();
-
-			if (rs.next()) {
-				System.out.println("Login Succesfull !");
-				return true;
-			} else {
-				throw new HodException("Invalid Credentials");
-	
+			
+			if(rs.next()) {
+				String name = rs.getString("name");
+				comment = "Welcome "+ name;
 			}
 			
+			
 		} catch (SQLException e) {
-			
-			throw new HodException(e.getMessage());
-			
+			e.getStackTrace();
 		}
-
+			
+		return comment;
 	}
 
 	@Override
@@ -176,7 +172,7 @@ public class HODDaoImpl implements HODDao{
 		try(Connection conn= DBUtil.provideConnection()) {
 			
 		PreparedStatement ps= conn.prepareStatement
-			("insert into EngineerComplainDTO(engid,name,category,EcomplainId,ComplainStatus) values(?,?,?,?,?)");
+			("insert into EngineerComplain(engid,name,category,EcomplainId,ComplainStatus) values(?,?,?,?,?)");
 		
 		ps.setInt(1, engid);
 		ps.setString(2, name);
@@ -199,6 +195,7 @@ public class HODDaoImpl implements HODDao{
 		return message;
 		
 	}
+
 
 
 

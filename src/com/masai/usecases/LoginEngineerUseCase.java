@@ -2,38 +2,40 @@ package com.masai.usecases;
 
 import java.util.Scanner;
 
+import com.masai.dao.EngineerDao;
 import com.masai.dao.HODDao;
+import com.masai.daoImpl.EngineerDaoImpl;
 import com.masai.daoImpl.HODDaoImpl;
 import com.masai.exceptions.ComplainException;
 import com.masai.exceptions.EmployeeException;
 import com.masai.exceptions.EngineerException;
 import com.masai.exceptions.HodException;
 import com.masai.exceptions.MyException;
-import com.mysql.cj.jdbc.Driver;
 
-public class LoginHodUseCase {
+public class LoginEngineerUseCase {
 
-	public static void main(String[] args) throws EmployeeException, MyException, EngineerException, ComplainException {
+	public static void main(String[] args) throws EmployeeException, MyException, HodException, ComplainException {
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Username:");
+		System.out.println("Enter Your Username :-");
 		String username = sc.next();
 		
-		System.out.println("Enter Password:");
+		System.out.println("Enter Your Password :-");
 		String password = sc.next();
 		
-		HODDao d = new HODDaoImpl();
-		
+		EngineerDao d = new EngineerDaoImpl();
 		
 		String result;
 		try {
-			result = d.LoginHOD(username, password);
+			result = d.loginEngineer(username, password);
 			System.out.println(result);
-			HODDriver.main(args);
-		} catch (HodException e) {
+			EngineerDriver.main(username);
+		} catch (EngineerException e) {
 			e.printStackTrace();
 		}
 		
+		
 	}
+		
 
 }

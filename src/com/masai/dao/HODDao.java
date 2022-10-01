@@ -10,13 +10,13 @@ import com.masai.exceptions.HodException;
 
 public interface HODDao {
 	
-	public boolean LoginHOD(String name ,String username, String password) throws HodException;
+	public String LoginHOD(String username, String password) throws HodException;
 	
-	public String registerEngineer(Engineer engineer); 
+	public String registerEngineer(Engineer engineer)throws EngineerException; 
 	
 	public List<Engineer> getAllEngineerDetails()throws EngineerException;
 	
-	public String DeleteEngineer(int engId);
+	public String DeleteEngineer(int engId) throws EngineerException;
 	
 	public List<Complain> getAllComplain()throws ComplainException;
 	

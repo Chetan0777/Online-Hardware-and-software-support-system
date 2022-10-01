@@ -17,13 +17,13 @@ public interface EmployeeDao {
 	
 	public String loginEmployee(String username, String password)throws EmployeeException;
 	
-	public String registerComplain(String complainname,String category);
+	public String registerComplain(String complainname,String category)throws ComplainException;
 	
 	public List<EngineerComplain> ComplainStatus(int EcomplainId)throws ComplainException;
 	
-	public List<Complain> getComplainHistory(int empid);
+	public List<Complain> getComplainHistory(int empid)throws EmployeeException;
 	
-	public String changePassword(String password,int empid);
+	public String changePassword(String password,int empid)throws EmployeeException;
 	
 	
 }
