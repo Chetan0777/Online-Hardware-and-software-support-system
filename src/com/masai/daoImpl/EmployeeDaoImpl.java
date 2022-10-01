@@ -117,7 +117,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try(Connection conn= DBUtil.provideConnection()) {
 			
 		PreparedStatement ps= conn.prepareStatement
-			("insert into complain(ComplainName,Category) values(?,?)");
+			("insert into register_complain(ComplainName,Category) values(?,?)");
 		
 		  ps.setString(1, complainname);
 		  ps.setString(2, category);

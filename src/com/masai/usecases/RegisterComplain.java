@@ -12,7 +12,7 @@ import com.masai.exceptions.MyException;
 
 public class RegisterComplain {
 
-	public static void main(String[] args) throws EmployeeException, MyException, EngineerException, HodException {
+	public static void main(String[] args) throws EmployeeException, MyException, EngineerException, HodException, ComplainException {
 		
 		Scanner sc = new Scanner(System.in);
 		EmployeeDao hd = new EmployeeDaoImpl();
